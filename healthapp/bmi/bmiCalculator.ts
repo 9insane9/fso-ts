@@ -37,8 +37,6 @@ const bmi = (heightCm: number, weightKg: number): string => {
   ];
 
   const categoryLabel: string = categories.find((c) => c.check(value))!.label;
-  console.log(categoryLabel)
-
   return categoryLabel;
 };
 
