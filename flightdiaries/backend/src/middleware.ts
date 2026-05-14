@@ -8,7 +8,7 @@ export const newDiaryParser = (
   next: NextFunction,
 ) => {
   try {
-    NewEntrySchema.parse(req.body);
+    req.body = NewEntrySchema.parse(req.body);
     next();
   } catch (error: unknown) {
     next(error);
@@ -22,7 +22,9 @@ export const errorMiddleware = (
   next: NextFunction,
 ) => {
   if (error instanceof z.ZodError) {
-    res.status(400).send({ error: error.issues });
+    res.status(400).send({
+      error: error.issues.map((i) => i.message),
+    });
   } else {
     next(error);
   }
