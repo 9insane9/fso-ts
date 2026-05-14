@@ -70,7 +70,7 @@ const EntryForm = ({ updateLocalEntries }: FormProps) => {
       {/* DATE */}
       <label htmlFor="dateInput">date</label>
       <input
-        type="text"
+        type="date"
         id="dateInput"
         value={newEntry.date ?? ""}
         onChange={(e) =>
