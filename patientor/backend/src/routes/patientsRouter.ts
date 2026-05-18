@@ -19,6 +19,12 @@ patientsRouter.get("/", (_req, res: Response<NonSensitivePatient[]>) => {
   res.send(data);
 });
 
+patientsRouter.get("/:id", (req, res: Response<Patient>) => {
+  const id = req.params.id;
+  const data = patientsService.getPatientById(id);
+  res.send(data);
+});
+
 const newPatientParser = (req: Request, _res: Response, next: NextFunction) => {
   try {
     req.body = NewPatientSchema.parse(req.body);

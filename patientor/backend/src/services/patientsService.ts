@@ -15,6 +15,7 @@ const getNonSensitivePatients = (): NonSensitivePatient[] => {
 const addPatient = (patient: NewPatient): Patient => {
   const newPatient: Patient = {
     id: uuid(),
+    entries: [],
     ...patient,
   };
 
@@ -22,7 +23,18 @@ const addPatient = (patient: NewPatient): Patient => {
   return newPatient;
 };
 
+const getPatientById = (id: string): Patient => {
+  const patient = patients.find((p) => id === p.id);
+
+  if (!patient) {
+    throw new Error("Patient not found!");
+  }
+
+  return patient;
+};
+
 export default {
   getNonSensitivePatients,
   addPatient,
+  getPatientById,
 };
